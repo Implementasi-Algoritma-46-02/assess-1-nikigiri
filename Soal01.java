@@ -2,23 +2,27 @@ import java.util.Scanner;
 
 public class Soal01 {
 
-	public static void main(final String[] args) {
-		// Kerjakan soalnya di sini
-		Scanner userInput = new Scanner(System.in);
-		int D = 123;
-        int R = 456;
-        int I = 789;
-		int j = 101;
-		int L = 135;
-		String nomorLab;
-        if (D > R && D > I) {
-            nomorLab = "D";
-        } else if (R > D && R > I) {
-            nomorLab = "R";
-        } else {
-            nomorLab = "I";
-        }
+	public static boolean cekValid(String input) {
+        return input.length() == 3 &&
+            input.matches("[0-9]+") &&
+            input.charAt(0) < input.charAt(1) &&
+            input.charAt(1) < input.charAt(2) &&
+            (input.charAt(2) - '0') % 2 != 0;
+    }
 
-        System.out.println(nomorLab);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Masukkan lima nomor ID satu per satu:");
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.print( i + ": ");
+            String input = scanner.nextLine();
+
+            String hasil = cekValid(input) ? "valid" : "tidak valid";
+            System.out.println(input + " " + hasil);
+        }
     }
 }
+
+      
